@@ -1,9 +1,9 @@
 body {
-  font-family: fredoka, "Times New Roman", Times, serif;
+  font-family: Fredoka, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--background);
 }
 :root {
-  --background: #eec68c;
+  --background: rgba(224, 198, 158, 0.712);
   --text-color: #ffffff;
 }
 ::-webkit-scrollbar {
@@ -117,7 +117,7 @@ div.navbar {
   font-weight: bold;
 }
 video {
-  height: 500px;
+  height: 530px;
   background-size: 100%;
   width: 50%;
   margin: 20px 20px;
@@ -252,6 +252,7 @@ video {
 .why-choose-us-head {
   font-weight: bold;
   font-size: 50px;
+  padding-top: 30px;
 }
 .why-choose-us {
   background-color: var(--background);
@@ -264,6 +265,31 @@ video {
   font-weight: bold;
   font-size: 50px;
 }
-/* .disc {
-  font-size: 20px;
-} */
+
+.gallery-section {
+  padding-right: 10px;
+}
+
+#img-Ilove {
+  padding-top: 50px;
+  mix-blend-mode: color-burn;
+  height: 25%;
+}
+
+footer {
+  background-color: rgba(238, 199, 140, 0.69);
+  margin-top: -50px;
+}
+.footer-names {
+  /* display: inline; */
+  gap: 500px;
+}
+.link {
+  /* display: inline; */
+  gap: 500px;
+  align-content: center;
+}
+.heading-footer {
+  font-size: 25px;
+  font-weight: 500;
+}

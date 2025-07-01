@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Zain";
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.navbar {
+  background-color: #aee951;
+}
+.nav {
+  display: flex;
+}
+.nav-item {
+  margin-top: 12px;
+  margin-left: 40px;
+  list-style-type: none;
+  cursor: pointer;
+  /* font-family: "Zain"; */
+  font-size: 20px;
+  width: 100px;
+  height: 30px;
+}
+.nav-item:hover {
+  transition: 0.2s;
+  background-color: #9cd344;
+  background-size: 50%;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+}
+.logo-header {
+  margin-top: 5px;
+  margin-left: 40px;
+  list-style-type: none;
+  font-size: 40px;
+  font-family: "UnifrakturMaguntia";
+  font-weight: bold;
+}
+/* .contact-us {
+  background-color: #79a82e;
+  border-radius: 30px;
+  width: 100px;
+  height: 30px;
+  color: whitesmoke;
+} */
+.hero {
+  background-color: #6d9c21;
+  width: 100%;
+  height: 500px;
+}
+
+.hero-heading {
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  justify-items: center;
+  padding-top: 200px;
+  font-size: 50px;
+  font-weight: bold;
+}
+.india {
+  font-family: "UnifrakturMaguntia";
+}
+.para {
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+}
+.location-indore {
+  background-color: #5d861b;
+  width: 100%;
+  height: 500px;
+}
+.heading-location {
+  font-size: 50px;
+  padding-top: 50px;
+  padding-left: 50px;
+}
+.side-images {
+}
+.side-image-1 {
+  border-radius: 10px;
+  margin-top: -2.5rem;
+  margin-left: 30px;
+  width: 300px;
+  height: 200px;
+}
+.side-image-2 {
+  border-radius: 10px;
+  margin-top: -10%;
+  margin-left: 60%;
+  width: 300px;
+  height: 200px;
+}
+
+/* Media Queries & Animations */
+@media screen and (max-width: 1585px) {
+  .side-image-2 {
+    border-radius: 10px;
+    margin-top: -10%;
+    margin-left: 50%;
+    width: 300px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 1270px) {
+  .side-image-2 {
+    border-radius: 10px;
+    margin-top: -10%;
+    margin-left: 45vw;
+    width: 300px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .side-image-2 {
+    border-radius: 10px;
+    margin-top: -10%;
+    margin-left: 40vw;
+    width: 300px;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 1095px) {
+  .side-image-2 {
+    border-radius: 10px;
+    margin-top: -4vh;
+    margin-left: 43vw;
+    width: 250px;
+    height: 175px;
+  }
+  .side-image-1 {
+    width: 250px;
+    height: 175px;
+  }
+}
