@@ -1,0 +1,13 @@
+Create an online art gallery for unknown artists called “HiddenBrush”
+Requirements:
+
+Homepage with a hero image slider showing featured artwork
+
+Gallery page with filterable categories (e.g. Abstract, Realism, Surrealism)
+
+Artist profile pages with social links
+
+Light/dark theme toggle
+
+Fully responsive with smooth transition effects
+

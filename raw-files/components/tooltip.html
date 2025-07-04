@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tooltip Component</title>
+    <style>
+        :root {
+            --tooltip-bg: #111827;
+            --tooltip-color: #f9fafb;
+            --tooltip-radius: 6px;
+            --tooltip-padding: 0.4rem 0.7rem;
+            --tooltip-font: 'Segoe UI', sans-serif;
+            --tooltip-transition: 0.3s ease;
+        }
+
+        body {
+            font-family: var(--tooltip-font);
+            background: #f3f4f6;
+            padding: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .tooltip-text {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--tooltip-bg);
+            color: var(--tooltip-color);
+            padding: var(--tooltip-padding);
+            border-radius: var(--tooltip-radius);
+            white-space: nowrap;
+            font-size: 0.85rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--tooltip-transition);
+            z-index: 10;
+        }
+
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--tooltip-bg) transparent transparent transparent;
+        }
+
+        .tooltip-wrapper:hover .tooltip-text,
+        .tooltip-wrapper:focus-within .tooltip-text {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tooltip-wrapper" tabindex="0" aria-describedby="tooltip1">
+        Hover or focus me
+        <div class="tooltip-text" role="tooltip" id="tooltip1">
+            This is a tooltip message
+        </div>
+    </div>
+
+</body>
+
+</html>

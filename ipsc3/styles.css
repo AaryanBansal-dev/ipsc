@@ -9,14 +9,15 @@ body {
   display: none;
 }
 .navbar {
-  background-color: #aee951;
+  /* color: white; */
+  background-color: #386641;
 }
 .nav {
   display: flex;
 }
 .nav-item {
   margin-top: 12px;
-  margin-left: 40px;
+  margin-left: 80px;
   list-style-type: none;
   cursor: pointer;
   /* font-family: "Zain"; */
@@ -25,8 +26,9 @@ body {
   height: 30px;
 }
 .nav-item:hover {
+  /* color: white; */
   transition: 0.2s;
-  background-color: #9cd344;
+  background-color: #6a994e;
   background-size: 50%;
   border-radius: 10px;
   width: 100px;
@@ -48,9 +50,9 @@ body {
   color: whitesmoke;
 } */
 .hero {
-  background-color: #6d9c21;
+  background-color: #6a994e;
   width: 100%;
-  height: 500px;
+  height: 700px;
 }
 
 .hero-heading {
@@ -73,32 +75,32 @@ body {
   align-self: center;
 }
 .location-indore {
-  background-color: #5d861b;
+  background-color: #93b446;
   width: 100%;
-  height: 500px;
+  height: 700px;
 }
 .heading-location {
   font-size: 50px;
   padding-top: 50px;
   padding-left: 50px;
-}
-.side-images {
+  padding-top: 100px;
 }
 .side-image-1 {
   border-radius: 10px;
-  margin-top: -2.5rem;
-  margin-left: 30px;
-  width: 300px;
-  height: 200px;
+  margin-top: 1.5rem;
+  width: 600px;
+  height: 400px;
 }
-.side-image-2 {
+.dish {
+  padding-left: 60px;
+  text-align: center;
+  font-size: 30px;
+}
+.dish-image {
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
-  margin-top: -10%;
-  margin-left: 60%;
-  width: 300px;
-  height: 200px;
 }
-
 /* Media Queries & Animations */
 @media screen and (max-width: 1585px) {
   .side-image-2 {
@@ -139,4 +141,13 @@ body {
     width: 250px;
     height: 175px;
   }
+}
+/* https://coolors.co/386641-6a994e-a7c957-f2e8cf-bc4749 */
+#Mainimg {
+  width: 90%;
+  margin-top: 100px;
+}
+#What {
+  background-color: #6a994e;
+  col
 }
