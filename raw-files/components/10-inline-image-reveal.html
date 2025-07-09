@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Image Reveal on Hover</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            line-height: 1.8;
+        }
+        
+        .content {
+            max-width: 700px;
+            color: #64748b;
+            font-size: 18px;
+        }
+        
+        .image-reveal {
+            position: relative;
+            display: inline;
+            color: #3b82f6;
+            cursor: pointer;
+            border-bottom: 2px solid #3b82f6;
+            font-weight: 500;
+        }
+        
+        .hidden-image {
+            position: absolute;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+            border: 2px solid #3b82f6;
+        }
+        
+        .hidden-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-reveal:hover .hidden-image {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-10px);
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 30px;
+        }
+        
+        p {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Inline Image Reveal on Hover</h2>
+    
+    <div class="content">
+        <p>
+            This text contains hidden images that appear when you hover over certain words. For example, when you hover over 
+            <span class="image-reveal">
+                beautiful landscapes
+                <div class="hidden-image">
+                    <img src="/placeholder.svg?height=100&width=200" alt="Beautiful Landscape">
+                </div>
+            </span>
+            , you'll see a preview image appear above the text.
+        </p>
+        
+        <p>
+            The same effect works for other terms like 
+            <span class="image-reveal">
+                modern architecture
+                <div class="hidden-image">
+                    <img src="/placeholder.svg?height=100&width=200" alt="Modern Architecture">
+                </div>
+            </span>
+            or even 
+            <span class="image-reveal">
+                abstract art
+                <div class="hidden-image">
+                    <img src="/placeholder.svg?height=100&width=200" alt="Abstract Art">
+                </div>
+            </span>
+            . Each hover reveals a contextual image that relates to the text.
+        </p>
+        
+        <p>
+            This technique is great for 
+            <span class="image-reveal">
+                product showcases
+                <div class="hidden-image">
+                    <img src="/placeholder.svg?height=100&width=200" alt="Product Showcase">
+                </div>
+            </span>
+            , portfolio pieces, or any content where you want to provide visual context without cluttering the main text layout.
+        </p>
+    </div>
+</body>
+</html>

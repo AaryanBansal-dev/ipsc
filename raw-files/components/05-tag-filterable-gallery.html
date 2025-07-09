@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Filterable Gallery</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .tag.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        
+        .tag:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .tag.active:hover {
+            color: white;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .gallery-item.hidden {
+            display: none;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .item-content {
+            padding: 15px;
+        }
+        
+        .item-title {
+            color: #1e40af;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .item-category {
+            color: #64748b;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color: #1e40af; margin-bottom: 30px;">Tag Filterable Gallery</h2>
+    
+    <div class="filter-tags">
+        <div class="tag active" data-filter="all">All</div>
+        <div class="tag" data-filter="design">Design</div>
+        <div class="tag" data-filter="development">Development</div>
+        <div class="tag" data-filter="photography">Photography</div>
+    </div>
+    
+    <div class="gallery">
+        <div class="gallery-item" data-category="design">
+            <img src="/placeholder.svg?height=150&width=200" alt="Design Project">
+            <div class="item-content">
+                <div class="item-title">UI Design</div>
+                <div class="item-category">Design</div>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="development">
+            <img src="/placeholder.svg?height=150&width=200" alt="Development Project">
+            <div class="item-content">
+                <div class="item-title">Web App</div>
+                <div class="item-category">Development</div>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="photography">
+            <img src="/placeholder.svg?height=150&width=200" alt="Photography Project">
+            <div class="item-content">
+                <div class="item-title">Portrait</div>
+                <div class="item-category">Photography</div>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="design">
+            <img src="/placeholder.svg?height=150&width=200" alt="Design Project">
+            <div class="item-content">
+                <div class="item-title">Brand Identity</div>
+                <div class="item-category">Design</div>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="development">
+            <img src="/placeholder.svg?height=150&width=200" alt="Development Project">
+            <div class="item-content">
+                <div class="item-title">Mobile App</div>
+                <div class="item-category">Development</div>
+            </div>
+        </div>
+        <div class="gallery-item" data-category="photography">
+            <img src="/placeholder.svg?height=150&width=200" alt="Photography Project">
+            <div class="item-content">
+                <div class="item-title">Landscape</div>
+                <div class="item-category">Photography</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const tags = document.querySelectorAll('.tag');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Remove active class from all tags
+                tags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                tag.classList.add('active');
+                
+                const filter = tag.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

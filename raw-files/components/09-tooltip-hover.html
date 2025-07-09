@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltip on Hover</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            line-height: 1.8;
+        }
+        
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip-text {
+            color: #3b82f6;
+            cursor: help;
+            border-bottom: 1px dotted #3b82f6;
+        }
+        
+        .tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e40af;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #1e40af;
+        }
+        
+        .tooltip-container:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .tooltip-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 10px;
+        }
+        
+        .content {
+            max-width: 600px;
+            color: #64748b;
+            font-size: 16px;
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tooltip on Hover</h2>
+    
+    <div class="content">
+        <p>
+            This paragraph contains several 
+            <span class="tooltip-container">
+                <span class="tooltip-text">technical terms</span>
+                <div class="tooltip">Words that have specific meanings in a field</div>
+            </span>
+            that have helpful tooltips. When you hover over the 
+            <span class="tooltip-container">
+                <span class="tooltip-text">highlighted text</span>
+                <div class="tooltip">Text that stands out from the rest</div>
+            </span>
+            , you'll see additional information appear.
+        </p>
+        
+        <p>
+            You can also add tooltips to 
+            <span class="tooltip-container">
+                <span class="tooltip-text">interactive elements</span>
+                <div class="tooltip">Elements users can click or interact with</div>
+            </span>
+            to provide context and help users understand functionality.
+        </p>
+    </div>
+    
+    <div class="tooltip-container">
+        <button class="tooltip-button">Hover Button</button>
+        <div class="tooltip">This button has a tooltip too!</div>
+    </div>
+    
+    <div class="tooltip-container">
+        <button class="tooltip-button">Another Button</button>
+        <div class="tooltip">Tooltips work on any element</div>
+    </div>
+</body>
+</html>

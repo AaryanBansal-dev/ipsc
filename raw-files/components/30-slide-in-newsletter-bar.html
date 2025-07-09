@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide-In Newsletter Bar</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        
+        .section p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        /* Newsletter Bar Styles */
+        .newsletter-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .newsletter-bar.show {
+            transform: translateY(0);
+        }
+        
+        .newsletter-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .newsletter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .newsletter-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-input {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            min-width: 250px;
+            outline: none;
+        }
+        
+        .newsletter-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .newsletter-button {
+            background: white;
+            color: #3b82f6;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .newsletter-button:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+        
+        .newsletter-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .newsletter-close:hover {
+            opacity: 1;
+        }
+        
+        /* Top Newsletter Bar Variant */
+        .newsletter-bar-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1e40af;
+            color: white;
+            padding: 12px 20px;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease;
+            z-index: 1001;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .newsletter-bar-top.show {
+            transform: translateY(0);
+        }
+        
+        .newsletter-bar-top a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+        
+        .newsletter-bar-top .close-top {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        
+        .newsletter-bar-top .close-top:hover {
+            opacity: 1;
+        }
+        
+        /* Side Newsletter Bar */
+        .newsletter-bar-side {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(100%);
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            padding: 30px 25px;
+            box-shadow: -4px 0 20px rgba(59, 130, 246, 0.1);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .newsletter-bar-side.show {
+            transform: translateY(-50%) translateX(0);
+        }
+        
+        .side-title {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .side-description {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .side-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .side-input {
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .side-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .side-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .side-button:hover {
+            background: #2563eb;
+        }
+        
+        .side-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .side-close:hover {
+            color: #3b82f6;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .newsletter-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .newsletter-form {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .newsletter-input {
+                min-width: 200px;
+                flex: 1;
+            }
+            
+            .newsletter-bar-side {
+                right: 10px;
+                max-width: calc(100vw - 40px);
+                padding: 20px;
+            }
+        }
+        
+        /* Demo Controls */
+        .demo-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            border: 1px solid #e2e8f0;
+            z-index: 1002;
+        }
+        
+        .demo-controls h3 {
+            color: #1e40af;
+            margin: 0 0 15px 0;
+            font-size: 16px;
+        }
+        
+        .demo-button {
+            display: block;
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: #2563eb;
+        }
+        
+        .demo-button:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Controls -->
+    <div class="demo-controls">
+        <h3>Demo Controls</h3>
+        <button class="demo-button" onclick="showBottomBar()">Show Bottom Bar</button>
+        <button class="demo-button" onclick="showTopBar()">Show Top Bar</button>
+        <button class="demo-button" onclick="showSideBar()">Show Side Bar</button>
+        <button class="demo-button" onclick="hideAllBars()">Hide All</button>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h1 style="color: #1e40af; font-size: 2.5rem; margin-bottom: 20px;">Slide-In Newsletter Bar</h1>
+            <p>This page demonstrates different types of newsletter subscription bars that slide in from various directions. Use the demo controls in the top-left corner to trigger different newsletter bars.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Bottom Slide-In Bar</h2>
+            <p>The most common type slides in from the bottom of the screen. It's non-intrusive and appears after a delay or when the user has scrolled a certain percentage of the page.</p>
+            <p>This type works well for capturing email subscriptions without interrupting the user's reading experience.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Top Notification Bar</h2>
+            <p>A simple notification bar that slides down from the top. Perfect for announcements, promotions, or important updates.</p>
+            <p>This style is less intrusive than modal popups but still gets the user's attention effectively.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Side Panel</h2>
+            <p>A side-sliding panel that appears from the right side of the screen. This format provides more space for content and can include additional information about the newsletter.</p>
+            <p>Great for detailed subscription forms or when you want to provide more context about what users are signing up for.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Implementation Features</h2>
+            <p>These newsletter bars include:</p>
+            <p>• Smooth CSS animations</p>
+            <p>• Mobile-responsive design</p>
+            <p>• Easy dismissal with close buttons</p>
+            <p>• Form validation and submission handling</p>
+            <p>• Customizable timing and triggers</p>
+        </div>
+        
+        <div class="section">
+            <h2>Best Practices</h2>
+            <p>When implementing newsletter bars:</p>
+            <p>• Don't show them immediately - wait for user engagement</p>
+            <p>• Make them easy to dismiss</p>
+            <p>• Keep the copy concise and compelling</p>
+            <p>• Ensure they work well on mobile devices</p>
+            <p>• Respect users who have already dismissed them</p>
+        </div>
+        
+        <div class="section">
+            <h2>Scroll to Test</h2>
+            <p>In a real implementation, these bars would typically appear based on scroll percentage, time spent on page, or exit intent. Use the demo controls to see how each style looks and behaves.</p>
+            <p>Continue scrolling to see more content and test the different newsletter bar styles using the controls in the top-left corner.</p>
+        </div>
+        
+        <div class="section">
+            <h2>More Content</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    
+    <!-- Bottom Newsletter Bar -->
+    <div class="newsletter-bar" id="bottomBar">
+        <div class="newsletter-content">
+            <div class="newsletter-text">
+                <div class="newsletter-title">Stay Updated!</div>
+                <div class="newsletter-subtitle">Get the latest news and updates delivered to your inbox.</div>
+            </div>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event, 'bottom')">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+            <button class="newsletter-close" onclick="hideBottomBar()">&times;</button>
+        </div>
+    </div>
+    
+    <!-- Top Newsletter Bar -->
+    <div class="newsletter-bar-top" id="topBar">
+        <span>🎉 Special Offer: Get 50% off your first month!</span>
+        <a href="#" onclick="handleTopBarClick()">Learn More</a>
+        <button class="close-top" onclick="hideTopBar()">&times;</button>
+    </div>
+    
+    <!-- Side Newsletter Bar -->
+    <div class="newsletter-bar-side" id="sideBar">
+        <button class="side-close" onclick="hideSideBar()">&times;</button>
+        <div class="side-title">Join Our Newsletter</div>
+        <div class="side-description">
+            Get weekly insights, tips, and exclusive content delivered straight to your inbox. No spam, unsubscribe anytime.
+        </div>
+        <form class="side-form" onsubmit="handleNewsletterSubmit(event, 'side')">
+            <input type="email" class="side-input" placeholder="Your email address" required>
+            <button type="submit" class="side-button">Subscribe Now</button>
+        </form>
+    </div>
+    
+    <script>
+        // Demo control functions
+        function showBottomBar() {
+            document.getElementById('bottomBar').classList.add('show');
+        }
+        
+        function showTopBar() {
+            document.getElementById('topBar').classList.add('show');
+        }
+        
+        function showSideBar() {
+            document.getElementById('sideBar').classList.add('show');
+        }
+        
+        function hideBottomBar() {
+            document.getElementById('bottomBar').classList.remove('show');
+        }
+        
+        function hideTopBar() {
+            document.getElementById('topBar').classList.remove('show');
+        }
+        
+        function hideSideBar() {
+            document.getElementById('sideBar').classList.remove('show');
+        }
+        
+        function hideAllBars() {
+            hideBottomBar();
+            hideTopBar();
+            hideSideBar();
+        }
+        
+        function handleNewsletterSubmit(event, type) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert(`Newsletter subscription (${type}): ${email}`);
+            
+            // Hide the bar after successful submission
+            if (type === 'bottom') hideBottomBar();
+            if (type === 'side') hideSideBar();
+        }
+        
+        function handleTopBarClick() {
+            alert('Top bar link clicked!');
+            hideTopBar();
+        }
+        
+        // Auto-show bottom bar after 3 seconds (demo purposes)
+        setTimeout(() => {
+            showBottomBar();
+        }, 3000);
+        
+        // Auto-show top bar after 1 second (demo purposes)
+        setTimeout(() => {
+            showTopBar();
+        }, 1000);
+        
+        // Show side bar after scrolling 50% of the page
+        let sideBarShown = false;
+        window.addEventListener('scroll', () => {
+            if (!sideBarShown) {
+                const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                if (scrollPercent > 50) {
+                    setTimeout(() => {
+                        showSideBar();
+                    }, 1000);
+                    sideBarShown = true;
+                }
+            }
+        });
+        
+        // Close bars with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                hideAllBars();
+            }
+        });
+    </script>
+</body>
+</html>

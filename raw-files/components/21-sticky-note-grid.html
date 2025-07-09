@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Note Grid Cards</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .sticky-note {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 150px;
+            transform: rotate(-1deg);
+        }
+        
+        .sticky-note:nth-child(2n) {
+            background: #dbeafe;
+            transform: rotate(1deg);
+        }
+        
+        .sticky-note:nth-child(3n) {
+            background: #dcfce7;
+            transform: rotate(-0.5deg);
+        }
+        
+        .sticky-note:nth-child(4n) {
+            background: #fce7f3;
+            transform: rotate(0.5deg);
+        }
+        
+        .sticky-note:nth-child(5n) {
+            background: #f3e8ff;
+            transform: rotate(-1.5deg);
+        }
+        
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .sticky-note:hover {
+            transform: rotate(0deg) translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+        
+        .note-title {
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-decoration: underline;
+            text-decoration-color: #3b82f6;
+        }
+        
+        .note-content {
+            color: #374151;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .note-date {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 12px;
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        h2 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sticky Note Grid Cards</h2>
+    
+    <div class="notes-grid">
+        <div class="sticky-note">
+            <div class="note-title">Meeting Notes</div>
+            <div class="note-content">
+                Discuss project timeline and deliverables. Need to follow up with design team about mockups.
+            </div>
+            <div class="note-date">Today</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Shopping List</div>
+            <div class="note-content">
+                • Milk<br>
+                • Bread<br>
+                • Eggs<br>
+                • Coffee beans<br>
+                • Bananas
+            </div>
+            <div class="note-date">Yesterday</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Ideas</div>
+            <div class="note-content">
+                New feature: Dark mode toggle. Consider adding user preferences panel.
+            </div>
+            <div class="note-date">2 days ago</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Reminder</div>
+            <div class="note-content">
+                Call dentist to schedule appointment. Also need to pick up dry cleaning.
+            </div>
+            <div class="note-date">3 days ago</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Book Quotes</div>
+            <div class="note-content">
+                "The only way to do great work is to love what you do." - Steve Jobs
+            </div>
+            <div class="note-date">Last week</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Weekend Plans</div>
+            <div class="note-content">
+                Visit the museum, try that new restaurant downtown, finish reading current book.
+            </div>
+            <div class="note-date">Last week</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Code Snippet</div>
+            <div class="note-content">
+                Remember to use flexbox for the new layout. Grid might be better for the gallery section.
+            </div>
+            <div class="note-date">2 weeks ago</div>
+        </div>
+        
+        <div class="sticky-note">
+            <div class="note-title">Travel</div>
+            <div class="note-content">
+                Research flights to Tokyo. Check visa requirements and book accommodation.
+            </div>
+            <div class="note-date">2 weeks ago</div>
+        </div>
+    </div>
+</body>
+</html>

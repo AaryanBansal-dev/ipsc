@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Card Selector</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .card-option {
+            position: relative;
+        }
+        
+        .card-checkbox {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .card-label {
+            display: block;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .card-label:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+        }
+        
+        .card-checkbox:checked + .card-label {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .card-checkbox:checked + .card-label .card-icon {
+            background: #3b82f6;
+        }
+        
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #64748b;
+            transition: fill 0.3s ease;
+        }
+        
+        .card-checkbox:checked + .card-label .card-icon svg {
+            fill: white;
+        }
+        
+        .card-title {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .card-description {
+            color: #64748b;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .card-price {
+            color: #3b82f6;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .checkmark svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+        
+        .card-checkbox:checked + .card-label .checkmark {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .selected-count {
+            text-align: center;
+            margin-top: 30px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+        
+        h2 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Checkbox Card Selector</h2>
+    
+    <div class="cards-grid">
+        <div class="card-option">
+            <input type="checkbox" id="basic" class="card-checkbox" onchange="updateCount()">
+            <label for="basic" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Basic Plan</div>
+                <div class="card-description">Perfect for individuals getting started with basic features and limited usage.</div>
+                <div class="card-price">$9/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+        
+        <div class="card-option">
+            <input type="checkbox" id="pro" class="card-checkbox" onchange="updateCount()">
+            <label for="pro" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Pro Plan</div>
+                <div class="card-description">Advanced features for professionals and small teams with increased limits.</div>
+                <div class="card-price">$29/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+        
+        <div class="card-option">
+            <input type="checkbox" id="enterprise" class="card-checkbox" onchange="updateCount()">
+            <label for="enterprise" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Enterprise</div>
+                <div class="card-description">Full-scale solution for large organizations with custom requirements.</div>
+                <div class="card-price">$99/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+        
+        <div class="card-option">
+            <input type="checkbox" id="addon1" class="card-checkbox" onchange="updateCount()">
+            <label for="addon1" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Speed Boost</div>
+                <div class="card-description">Enhanced performance and faster processing for all your operations.</div>
+                <div class="card-price">$15/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+        
+        <div class="card-option">
+            <input type="checkbox" id="addon2" class="card-checkbox" onchange="updateCount()">
+            <label for="addon2" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Extra Storage</div>
+                <div class="card-description">Additional storage space for all your files and data backups.</div>
+                <div class="card-price">$10/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+        
+        <div class="card-option">
+            <input type="checkbox" id="addon3" class="card-checkbox" onchange="updateCount()">
+            <label for="addon3" class="card-label">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <div class="card-title">Priority Support</div>
+                <div class="card-description">24/7 priority customer support with dedicated account manager.</div>
+                <div class="card-price">$25/month</div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </label>
+        </div>
+    </div>
+    
+    <div class="selected-count" id="selectedCount">
+        0 items selected
+    </div>
+    
+    <script>
+        function updateCount() {
+            const checkboxes = document.querySelectorAll('.card-checkbox:checked');
+            const count = checkboxes.length;
+            const countElement = document.getElementById('selectedCount');
+            
+            if (count === 0) {
+                countElement.textContent = '0 items selected';
+            } else if (count === 1) {
+                countElement.textContent = '1 item selected';
+            } else {
+                countElement.textContent = `${count} items selected`;
+            }
+        }
+    </script>
+</body>
+</html>

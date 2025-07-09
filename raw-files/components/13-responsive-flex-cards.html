@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flex Cards</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .card {
+            flex: 1 1 300px;
+            max-width: 350px;
+            min-width: 280px;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #3b82f6;
+        }
+        
+        .card-title {
+            color: #1e40af;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .card-link {
+            color: #3b82f6;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+        
+        .card-link:hover {
+            color: #1e40af;
+        }
+        
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        
+        h2 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+            }
+            
+            .card {
+                flex: none;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Responsive Flex Cards</h2>
+    
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                </svg>
+            </div>
+            <div class="card-title">Secure & Reliable</div>
+            <div class="card-description">
+                Built with security in mind, our platform ensures your data is protected with enterprise-grade encryption and regular security audits.
+            </div>
+            <a href="#" class="card-link">
+                Learn more
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+            </div>
+            <div class="card-title">Lightning Fast</div>
+            <div class="card-description">
+                Experience blazing-fast performance with our optimized infrastructure. Load times under 100ms and 99.9% uptime guaranteed.
+            </div>
+            <a href="#" class="card-link">
+                View benchmarks
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6L12 10.5 8.5 8 12 5.5 15.5 8zM8.5 16L12 13.5 15.5 16 12 18.5 8.5 16z"/>
+                </svg>
+            </div>
+            <div class="card-title">Easy Integration</div>
+            <div class="card-description">
+                Get started in minutes with our simple API and comprehensive documentation. SDKs available for all major programming languages.
+            </div>
+            <a href="#" class="card-link">
+                View docs
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+            <div class="card-title">Premium Support</div>
+            <div class="card-description">
+                Get help when you need it with our 24/7 support team. Priority support, dedicated account managers, and extensive knowledge base.
+            </div>
+            <a href="#" class="card-link">
+                Contact support
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

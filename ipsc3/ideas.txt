@@ -2,3 +2,15 @@ My Dream City
 My Heritage India
 Online Learning PLatform
 Responsiveness 
+
+
+
+
+
+Finance
+
+Food
+
+9 - 13  = Home Page Master - Navbar, Hero, Image Gallery, Testimonials, Cards, Footers
+14 - 15 = About Page - Layout
+15 - 16 = Contact Us - Layout

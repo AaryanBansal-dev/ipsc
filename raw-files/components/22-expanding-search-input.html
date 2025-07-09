@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expanding Search Input</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .search-container {
+            position: relative;
+            margin: 20px;
+        }
+        
+        .search-input {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #3b82f6;
+            border-radius: 25px;
+            padding: 0 20px 0 50px;
+            font-size: 16px;
+            background: white;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .search-input:focus,
+        .search-input.expanded {
+            width: 300px;
+            cursor: text;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: #3b82f6;
+            pointer-events: none;
+            transition: all 0.4s ease;
+        }
+        
+        .search-input:focus + .search-icon,
+        .search-input.expanded + .search-icon {
+            left: 15px;
+        }
+        
+        .search-variant-2 {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            width: 200px;
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .search-variant-2:focus {
+            width: 350px;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .search-variant-2::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-variant-2:focus::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .icon-variant-2 {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            fill: white;
+            pointer-events: none;
+        }
+        
+        .search-variant-3 {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #e2e8f0;
+            border-radius: 30px;
+            padding: 0 20px 0 60px;
+            font-size: 18px;
+            background: white;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .search-variant-3:focus {
+            width: 400px;
+            border-color: #3b82f6;
+            cursor: text;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+        
+        .icon-variant-3 {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            fill: #64748b;
+            pointer-events: none;
+            transition: fill 0.3s ease;
+        }
+        
+        .search-variant-3:focus + .icon-variant-3 {
+            fill: #3b82f6;
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .variant-label {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .search-input:focus,
+            .search-input.expanded {
+                width: 250px;
+            }
+            
+            .search-variant-2:focus {
+                width: 280px;
+            }
+            
+            .search-variant-3:focus {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Expanding Search Input</h2>
+    
+    <div class="search-container">
+        <div class="variant-label">Click to expand</div>
+        <input type="text" class="search-input" placeholder="Search...">
+        <svg class="search-icon" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+    </div>
+    
+    <div class="search-container">
+        <div class="variant-label">Blue variant</div>
+        <input type="text" class="search-variant-2" placeholder="Type to search...">
+        <svg class="icon-variant-2" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+    </div>
+    
+    <div class="search-container">
+        <div class="variant-label">Large bouncy variant</div>
+        <input type="text" class="search-variant-3" placeholder="Search anything...">
+        <svg class="icon-variant-3" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+    </div>
+    
+    <script>
+        // Add expanded class when input has value
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value.length > 0) {
+                    this.classList.add('expanded');
+                } else {
+                    this.classList.remove('expanded');
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.value.length === 0) {
+                    this.classList.remove('expanded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

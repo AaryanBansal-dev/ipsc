@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creative UI Sections Showcase</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f8fa;
+    color: #222;
+    line-height: 1.6;
+  }
+  h2.section-title {
+    margin: 40px 0 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #222;
+  }
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+  }
+  /* 1. Image Hover Zoom + Text Reveal */
+  .img-hover-zoom {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .img-hover-zoom img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+  }
+  .img-hover-zoom:hover img {
+    transform: scale(1.15);
+  }
+  .img-hover-zoom .overlay-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    border-radius: 0 0 12px 12px;
+  }
+  .img-hover-zoom:hover .overlay-text {
+    transform: translateY(0);
+  }
+
+  /* 2. Button with Ripple Effect */
+  .ripple-btn {
+    position: relative;
+    overflow: hidden;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  .ripple-btn:hover {
+    background-color: #0056b3;
+  }
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 600ms linear;
+    background-color: rgba(255, 255, 255, 0.7);
+    pointer-events: none;
+  }
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  /* 3. Expandable Text Card */
+  .expandable-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: max-height 0.4s ease;
+    overflow: hidden;
+    max-height: 120px;
+  }
+  .expandable-card.expanded {
+    max-height: 500px;
+  }
+  .expandable-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .expandable-card .fadeout {
+    content: "";
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(transparent, white);
+    pointer-events: none;
+  }
+
+  /* 4. Hoverable Icon Grid */
+  .icon-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .icon-grid .icon {
+    background: white;
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    user-select: none;
+  }
+  .icon-grid .icon:hover {
+    color: #007bff;
+    transform: translateY(-8px);
+  }
+
+  /* 5. Tag Filterable Gallery */
+  .tag-filter {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .tag-filter .tags {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .tag-filter .tags button {
+    background: #e0e0e0;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .tag-filter .tags button.active,
+  .tag-filter .tags button:hover {
+    background: #007bff;
+    color: white;
+  }
+  .tag-filter .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap: 15px;
+  }
+  .tag-filter .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .tag-filter .gallery img:hover {
+    transform: scale(1.08);
+  }
+  .tag-filter .gallery img.hidden {
+    display: none;
+  }
+
+  /* 6. Animated Gradient Background Section */
+  .animated-gradient {
+    height: 150px;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 700px;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+    background-size: 800% 800%;
+    animation: gradientMove 15s ease infinite;
+  }
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* 7. Animated Border on Hover */
+  .animated-border-btn {
+    position: relative;
+    padding: 14px 28px;
+    background: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.3s ease;
+    user-select: none;
+  }
+  .animated-border-btn::before,
+  .animated-border-btn::after {
+    content: "";
+    position: absolute;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+    transition: 0.4s ease;
+  }
+  .animated-border-btn::before {
+    top: 0;
+    left: 0;
+    border-top-color: #007bff;
+    border-left-color: #007bff;
+  }
+  .animated-border-btn::after {
+    bottom: 0;
+    right: 0;
+    border-bottom-color: #007bff;
+    border-right-color: #007bff;
+  }
+  .animated-border-btn:hover {
+    color: white;
+    background: #007bff;
+  }
+  .animated-border-btn:hover::before {
+    width: 100%;
+    height: 100%;
+  }
+  .animated-border-btn:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 8. Fade-In Section on Scroll */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* For demonstration, style container */
+  .fade-in-box {
+    background: white;
+    padding: 25px;
+    margin: 12px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  /* 9. Tooltip on Hover */
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: #007bff;
+    font-weight: 600;
+  }
+  .tooltip-container .tooltip-text {
+    visibility: hidden;
+    width: 180px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 100;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.85rem;
+    pointer-events: none;
+  }
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  .tooltip-container .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+
+  /* 10. Inline Image Reveal on Hover */
+  .inline-img-reveal {
+    position: relative;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .inline-img-reveal img {
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .inline-img-reveal:hover img {
+    opacity: 1;
+  }
+
+  /* 11. List Item Hover Highlight */
+  .hover-list {
+    max-width: 600px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+  }
+  .hover-list li {
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .hover-list li:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  /* 12. Auto Typing Text Line */
+  .typing-text {
+    font-family: monospace;
+    font-size: 1.5rem;
+    width: max-content;
+    border-right: 2px solid #007bff;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* 13. Responsive Flex Cards */
+  .flex-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .flex-card {
+    background: white;
+    padding: 20px;
+    flex: 1 1 250px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .flex-card:hover {
+    transform: translateY(-10px);
+  }
+  .flex-card h3 {
+    margin-bottom: 12px;
+  }
+
+  /* 14. Hover-Reveal Underline on Links */
+  .underline-link {
+    position: relative;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .underline-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: #007bff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  .underline-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* 15. Accordion List Section */
+  .accordion {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .accordion-item {
+    background: white;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  .accordion-header {
+    padding: 18px 24px;
+    cursor: pointer;
+    font-weight: 600;
+    background: #007bff;
+    color: white;
+    user-select: none;
+  }
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #f9faff;
+    padding: 0 24px;
+  }
+  .accordion-content p {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+  .accordion-item.active .accordion-content {
+    max-height: 120px;
+  }
+
+  /* 16. Simple Tabs Section */
+  .tabs-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  .tabs-header {
+    display: flex;
+    border-bottom: 2px solid #eee;
+  }
+  .tabs-header button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    padding: 14px 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .tabs-header button.active {
+    border-bottom: 3px solid #007bff;
+    color: #007bff;
+  }
+  .tabs-content {
+    padding: 20px 10px 0;
+    font-size: 1rem;
+  }
+
+  /* 17. Floating Label Input Fields */
+  .floating-label-group {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .floating-label-group input {
+    width: 100%;
+    padding: 14px 12px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+  }
+  .floating-label-group label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 6px;
+    border-radius: 4px;
+  }
+  .floating-label-group input:focus + label,
+  .floating-label-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 0.8rem;
+    color: #007bff;
+  }
+
+  /* 18. Scroll Progress Bar on Top */
+  #scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 5px;
+    background: #007bff;
+    z-index: 9999;
+  }
+
+  /* 19. Checkbox Card Selector */
+  .checkbox-card-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .checkbox-card {
+    flex: 1 1 150px;
+    background: white;
+    padding: 18px 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+  .checkbox-card input[type="checkbox"] {
+    display: none;
+  }
+  .checkbox-card label {
+    flex: 1;
+    cursor: pointer;
+  }
+  .checkbox-card input[type="checkbox"]:checked + label {
+    font-weight: 700;
+    color: #007bff;
+  }
+  .checkbox-card input[type="checkbox"]:checked {
+    box-shadow: 0 0 10px 3px #007bff66;
+  }
+  .checkbox-card:hover {
+    box-shadow: 0 0 15px 5px #007bff33;
+  }
+
+  /* 20. Animated Social Icons Row */
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+  .social-row a {
+    color: #555;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    user-select: none;
+  }
+  .social-row a:hover {
+    color: #007bff;
+    transform: translateY(-8px);
+  }
+
+  /* Utility for center text & spacing */
+  .center-text {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress Bar -->
+<div id="scrollProgress"></div>
+
+<!-- 1. Image Hover Zoom + Text Reveal -->
+<section>
+  <h2 class="section-title">1. Image Hover Zoom + Text Reveal</h2>
+  <div class="img-hover-zoom" style="max-width:600px; margin:auto;">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Mountain"/>
+    <div class="overlay-text">Majestic Mountain View</div>
+  </div>
+</section>
+
+<!-- 2. Button with Ripple Effect -->
+<section class="center-text">
+  <h2 class="section-title">2. Button with Ripple Effect</h2>
+  <button class="ripple-btn">Click Me</button>
+</section>
+
+<!-- 3. Expandable Text Card -->
+<section>
+  <h2 class="section-title">3. Expandable Text Card</h2>
+  <div class="expandable-card" id="expandableCard">
+    <p>
+      This is a short preview of the text. Hover or click to expand and see more detailed content with a smooth transition. You can add any kind of text or content here — paragraphs, lists, etc. This method helps keep the page clean but informative.
+    </p>
+  </div>
+</section>
+
+<!-- 4. Hoverable Icon Grid -->
+<section>
+  <h2 class="section-title">4. Hoverable Icon Grid</h2>
+  <div class="icon-grid" aria-label="Icon Grid">
+    <div class="icon" title="Home" role="img" aria-label="Home icon">🏠</div>
+    <div class="icon" title="Search" role="img" aria-label="Search icon">🔍</div>
+    <div class="icon" title="Settings" role="img" aria-label="Settings icon">⚙️</div>
+    <div class="icon" title="Mail" role="img" aria-label="Mail icon">✉️</div>
+    <div class="icon" title="Phone" role="img" aria-label="Phone icon">📞</div>
+  </div>
+</section>
+
+<!-- 5. Tag Filterable Gallery -->
+<section>
+  <h2 class="section-title">5. Tag Filterable Gallery</h2>
+  <div class="tag-filter">
+    <div class="tags" role="list">
+      <button class="active" data-filter="all" aria-pressed="true">All</button>
+      <button data-filter="nature" aria-pressed="false">Nature</button>
+      <button data-filter="city" aria-pressed="false">City</button>
+      <button data-filter="tech" aria-pressed="false">Tech</button>
+    </div>
+    <div class="gallery" role="list">
+      <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=400&q=80" alt="Nature 1" data-category="nature" role="listitem" />
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="City 1" data-category="city" role="listitem" />
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Tech 1" data-category="tech" role="listitem" />
+      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=400&q=80" alt="Nature 2" data-category="nature" role="listitem" />
+      <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=400&q=80" alt="City 2" data-category="city" role="listitem" />
+      <img src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80" alt="Tech 2" data-category="tech" role="listitem" />
+    </div>
+  </div>
+</section>
+
+<!-- 6. Animated Gradient Background Section -->
+<section>
+  <h2 class="section-title">6. Animated Gradient Background Section</h2>
+  <div class="animated-gradient"></div>
+</section>
+
+<!-- 7. Animated Border on Hover -->
+<section class="center-text">
+  <h2 class="section-title">7. Animated Border on Hover</h2>
+  <button class="animated-border-btn">Hover Me</button>
+</section>
+
+<!-- 8. Fade-In Section on Scroll -->
+<section>
+  <h2 class="section-title">8. Fade-In Section on Scroll</h2>
+  <div class="fade-in-section fade-in-box">This content fades in when you scroll down!</div>
+  <div class="fade-in-section fade-in-box">Another fade-in element appearing smoothly.</div>
+  <div class="fade-in-section fade-in-box">Clean and elegant fade animations.</div>
+</section>
+
+<!-- 9. Tooltip on Hover -->
+<section class="center-text">
+  <h2 class="section-title">9. Tooltip on Hover</h2>
+  <p>Hover over this <span class="tooltip-container" tabindex="0">word
+    <span class="tooltip-text" role="tooltip">This is a helpful tooltip!</span>
+  </span> to see a tooltip.</p>
+</section>
+
+<!-- 10. Inline Image Reveal on Hover -->
+<section class="center-text">
+  <h2 class="section-title">10. Inline Image Reveal on Hover</h2>
+  <p>Hover over the <span class="inline-img-reveal">text
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=220&q=80" alt="Hidden mountain"/>
+  </span> to reveal the image.</p>
+</section>
+
+<!-- 11. List Item Hover Highlight -->
+<section>
+  <h2 class="section-title">11. List Item Hover Highlight</h2>
+  <ul class="hover-list" role="list">
+    <li tabindex="0">First Item</li>
+    <li tabindex="0">Second Item</li>
+    <li tabindex="0">Third Item</li>
+    <li tabindex="0">Fourth Item</li>
+  </ul>
+</section>
+
+<!-- 12. Auto Typing Text Line -->
+<section class="center-text">
+  <h2 class="section-title">12. Auto Typing Text Line</h2>
+  <div class="typing-text" id="typingText"></div>
+</section>
+
+<!-- 13. Responsive Flex Cards -->
+<section>
+  <h2 class="section-title">13. Responsive Flex Cards</h2>
+  <div class="flex-cards">
+    <div class="flex-card"><h3>Card One</h3><p>Simple card with hover lift effect.</p></div>
+    <div class="flex-card"><h3>Card Two</h3><p>Responsive and elegant layout.</p></div>
+    <div class="flex-card"><h3>Card Three</h3><p>Perfect for features or services.</p></div>
+  </div>
+</section>
+
+<!-- 14. Hover-Reveal Underline on Links -->
+<section class="center-text">
+  <h2 class="section-title">14. Hover-Reveal Underline on Links</h2>
+  <a href="#" class="underline-link">Hover this link</a>
+</section>
+
+<!-- 15. Accordion List Section -->
+<section>
+  <h2 class="section-title">15. Accordion List Section</h2>
+  <div class="accordion" role="list">
+    <div class="accordion-item" tabindex="0">
+      <div class="accordion-header" tabindex="0">What is your refund policy?</div>
+      <div class="accordion-content"><p>We offer a full refund within 30 days of purchase.</p></div>
+    </div>
+    <div class="accordion-item" tabindex="0">
+      <div class="accordion-header" tabindex="0">Do you offer customer support?</div>
+      <div class="accordion-content"><p>Yes, 24/7 customer support is available.</p></div>
+    </div>
+    <div class="accordion-item" tabindex="0">
+      <div class="accordion-header" tabindex="0">Can I upgrade my plan later?</div>
+      <div class="accordion-content"><p>Absolutely! You can upgrade anytime from your account dashboard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16. Simple Tabs Section -->
+<section>
+  <h2 class="section-title">16. Simple Tabs Section</h2>
+  <div class="tabs-container">
+    <div class="tabs-header" role="tablist">
+      <button class="active" role="tab" aria-selected="true" aria-controls="tab1" id="tab1-btn">Tab 1</button>
+      <button role="tab" aria-selected="false" aria-controls="tab2" id="tab2-btn">Tab 2</button>
+      <button role="tab" aria-selected="false" aria-controls="tab3" id="tab3-btn">Tab 3</button>
+    </div>
+    <div class="tabs-content" role="tabpanel" id="tab1" aria-labelledby="tab1-btn">Content for Tab 1 goes here.</div>
+    <div class="tabs-content" role="tabpanel" id="tab2" aria-labelledby="tab2-btn" hidden>Content for Tab 2 goes here.</div>
+    <div class="tabs-content" role="tabpanel" id="tab3" aria-labelledby="tab3-btn" hidden>Content for Tab 3 goes here.</div>
+  </div>
+</section>
+
+<!-- 17. Floating Label Input Fields -->
+<section>
+  <h2 class="section-title">17. Floating Label Input Fields</h2>
+  <form>
+    <div class="floating-label-group">
+      <input type="text" id="name" required placeholder=" " />
+      <label for="name">Your Name</label>
+    </div>
+    <div class="floating-label-group">
+      <input type="email" id="email" required placeholder=" " />
+      <label for="email">Email Address</label>
+    </div>
+  </form>
+</section>
+
+<!-- 18. Scroll Progress Bar on Top -->
+<section class="center-text" style="margin-bottom: 100px;">
+  <h2 class="section-title">18. Scroll Progress Bar on Top</h2>
+  <p>Scroll down and watch the blue progress bar fill at top of the page!</p>
+</section>
+
+<!-- 19. Checkbox Card Selector -->
+<section>
+  <h2 class="section-title">19. Checkbox Card Selector</h2>
+  <div class="checkbox-card-wrapper" role="list">
+    <div class="checkbox-card">
+      <input type="checkbox" id="opt1" />
+      <label for="opt1">Option One</label>
+    </div>
+    <div class="checkbox-card">
+      <input type="checkbox" id="opt2" />
+      <label for="opt2">Option Two</label>
+    </div>
+    <div class="checkbox-card">
+      <input type="checkbox" id="opt3" />
+      <label for="opt3">Option Three</label>
+    </div>
+  </div>
+</section>
+
+<!-- 20. Animated Social Icons Row -->
+<section>
+  <h2 class="section-title">20. Animated Social Icons Row</h2>
+  <div class="social-row" role="list">
+    <a href="#" aria-label="Facebook" role="listitem">📘</a>
+    <a href="#" aria-label="Twitter" role="listitem">🐦</a>
+    <a href="#" aria-label="Instagram" role="listitem">📸</a>
+    <a href="#" aria-label="LinkedIn" role="listitem">💼</a>
+  </div>
+</section>
+
+<script>
+  // Ripple Button Logic (Section 2)
+  document.querySelectorAll('.ripple-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const circle = document.createElement('span');
+      circle.classList.add('ripple');
+      const rect = btn.getBoundingClientRect();
+      circle.style.left = (e.clientX - rect.left) + 'px';
+      circle.style.top = (e.clientY - rect.top) + 'px';
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 600);
+    });
+  });
+
+  // Expandable Text Card Toggle (Section 3)
+  const expandableCard = document.getElementById('expandableCard');
+  expandableCard.addEventListener('click', () => {
+    expandableCard.classList.toggle('expanded');
+  });
+
+  // Tag Filterable Gallery (Section 5)
+  const tagButtons = document.querySelectorAll('.tag-filter .tags button');
+  const galleryImages = document.querySelectorAll('.tag-filter .gallery img');
+
+  tagButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active button
+      tagButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      });
+      button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
+
+      const filter = button.dataset.filter;
+      galleryImages.forEach(img => {
+        if (filter === 'all' || img.dataset.category === filter) {
+          img.classList.remove('hidden');
+        } else {
+          img.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Fade-In Section on Scroll (Section 8)
+  const fadeElems = document.querySelectorAll('.fade-in-section');
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        fadeInObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.2});
+  fadeElems.forEach(elem => fadeInObserver.observe(elem));
+
+  // Accordion Logic (Section 15)
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  accordionItems.forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    header.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Tabs Logic (Section 16)
+  const tabsContainer = document.querySelector('.tabs-container');
+  if(tabsContainer){
+    const tabButtons = tabsContainer.querySelectorAll('.tabs-header button');
+    const tabContents = tabsContainer.querySelectorAll('.tabs-content');
+
+    tabButtons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons
+        tabButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+          tabContents.forEach(c => c.hidden = true);
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        tabContents[idx].hidden = false;
+      });
+    });
+  }
+
+  // Auto Typing Text (Section 12)
+  const typingText = document.getElementById('typingText');
+  const textToType = "Hi, I’m Aaryan Bansal — Full Stack Developer & Designer.";
+  let index = 0;
+  function typeWriter() {
+    if(index < textToType.length){
+      typingText.textContent += textToType.charAt(index);
+      index++;
+      setTimeout(typeWriter, 90);
+    } else {
+      setTimeout(() => {
+        typingText.textContent = '';
+        index = 0;
+        typeWriter();
+      }, 3000);
+    }
+  }
+  typeWriter();
+
+  // Scroll Progress Bar Logic (Section 18)
+  const progressBar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+  });
+</script>
+
+</body>
+</html>

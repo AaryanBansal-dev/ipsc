@@ -1,0 +1,59 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #272626;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}
+nav {
+  background-color: #312f2f;
+}
+.nav-item {
+  list-style-type: none;
+  margin-left: 75px;
+  margin-top: 18px;
+  color: #dbd9d9;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.nav-item:hover {
+  color: #b9b9b9;
+}
+ul {
+  display: flex;
+}
+.head-nav {
+  list-style-type: none;
+  margin-left: 75px;
+  margin-top: 15px;
+  color: #ffffff;
+  font-size: 20px;
+}
+.hero {
+  background-image: url("Gemini_Generated_Image_vm6z3svm6z3svm6z.png");
+  height: 500px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+#hero-head {
+  font-size: 40px;
+  color: #ffe;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover-Reveal Underline on Links</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            line-height: 1.8;
+        }
+        
+        .content {
+            max-width: 700px;
+            color: #64748b;
+            font-size: 18px;
+        }
+        
+        .animated-link {
+            position: relative;
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .animated-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .animated-link:hover {
+            color: #1e40af;
+        }
+        
+        .animated-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            position: relative;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .button-link {
+            display: inline-block;
+            position: relative;
+            background: transparent;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 20px 10px 20px 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .button-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .button-link:hover {
+            color: white;
+        }
+        
+        .button-link:hover::after {
+            width: 100%;
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 30px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hover-Reveal Underline on Links</h2>
+    
+    <div class="content">
+        <p>
+            This paragraph contains several <a href="#" class="animated-link">animated links</a> that reveal 
+            underlines when you hover over them. The effect is smooth and adds a nice touch to the 
+            <a href="#" class="animated-link">user experience</a>.
+        </p>
+        
+        <p>
+            You can also create <a href="#" class="animated-link">different styles</a> of animated underlines 
+            depending on your design needs. This technique works well for 
+            <a href="#" class="animated-link">inline links</a> within text content.
+        </p>
+    </div>
+    
+    <nav class="nav-links">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Services</a>
+        <a href="#" class="nav-link">Portfolio</a>
+        <a href="#" class="nav-link">Contact</a>
+    </nav>
+    
+    <div>
+        <a href="#" class="button-link">Get Started</a>
+        <a href="#" class="button-link">Learn More</a>
+    </div>
+</body>
+</html>

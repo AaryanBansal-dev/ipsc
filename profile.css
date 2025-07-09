@@ -1,0 +1,12 @@
+body {
+    font-family: Arial;
+    background-color: #f0f8ff;
+    padding: 20px;
+    text-align: center;
+}
+img {
+    border-radius: 50%;
+}
+ul {
+    list-style: none;
+}

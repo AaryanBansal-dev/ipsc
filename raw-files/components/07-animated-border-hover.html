@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Border on Hover</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .border-button {
+            position: relative;
+            padding: 12px 24px;
+            background: white;
+            color: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .border-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 8px;
+            padding: 2px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .border-button:hover::before {
+            opacity: 1;
+        }
+        
+        .border-button:hover {
+            color: #1e40af;
+        }
+        
+        .border-card {
+            position: relative;
+            width: 200px;
+            height: 120px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .border-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #3b82f6, #1e40af, #2563eb, #1d4ed8);
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .border-card:hover::before {
+            opacity: 1;
+        }
+        
+        .card-title {
+            color: #1e40af;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .card-text {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2 style="color: #1e40af; margin-bottom: 30px; width: 100%;">Animated Border on Hover</h2>
+        
+        <button class="border-button">Hover for Border</button>
+        
+        <div class="border-card">
+            <div class="card-title">Hover Card</div>
+            <div class="card-text">This card gets an animated border when you hover over it.</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Item Hover Highlight</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .list-container {
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .list-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .list-item:hover {
+            background: #f8fafc;
+            transform: translateX(8px);
+            border-left: 4px solid #3b82f6;
+            padding-left: 16px;
+        }
+        
+        .list-icon {
+            width: 20px;
+            height: 20px;
+            fill: #64748b;
+            transition: fill 0.3s ease;
+        }
+        
+        .list-item:hover .list-icon {
+            fill: #3b82f6;
+        }
+        
+        .list-text {
+            color: #334155;
+            font-weight: 500;
+        }
+        
+        .list-description {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        .list-content {
+            flex: 1;
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>List Item Hover Highlight</h2>
+    
+    <div class="list-container">
+        <div class="list-item">
+            <svg class="list-icon" viewBox="0 0 24 24">
+                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+            </svg>
+            <div class="list-content">
+                <div class="list-text">Security Features</div>
+                <div class="list-description">Advanced protection for your data</div>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <svg class="list-icon" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            <div class="list-content">
+                <div class="list-text">Fast Performance</div>
+                <div class="list-description">Lightning-fast loading times</div>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <svg class="list-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <div class="list-content">
+                <div class="list-text">Easy to Use</div>
+                <div class="list-description">Intuitive interface design</div>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <svg class="list-icon" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <div class="list-content">
+                <div class="list-text">Premium Quality</div>
+                <div class="list-description">Top-tier materials and craftsmanship</div>
+            </div>
+        </div>
+        
+        <div class="list-item">
+            <svg class="list-icon" viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <div class="list-content">
+                <div class="list-text">24/7 Support</div>
+                <div class="list-description">Round-the-clock customer assistance</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

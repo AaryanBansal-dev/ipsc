@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure CSS Button Loading Spinner</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .loading-button {
+            position: relative;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            overflow: hidden;
+        }
+        
+        .loading-button:hover:not(.loading):not(.success) {
+            background: #2563eb;
+        }
+        
+        .loading-button:disabled {
+            cursor: not-allowed;
+        }
+        
+        .button-text {
+            transition: opacity 0.3s ease;
+        }
+        
+        .loading-button.loading .button-text {
+            opacity: 0;
+        }
+        
+        .loading-button.success .button-text {
+            opacity: 0;
+        }
+        
+        /* Spinner */
+        .spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-button.loading .spinner {
+            opacity: 1;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        /* Success checkmark */
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+        }
+        
+        .loading-button.success .checkmark {
+            opacity: 1;
+        }
+        
+        .checkmark svg {
+            width: 100%;
+            height: 100%;
+            fill: white;
+        }
+        
+        /* Success state */
+        .loading-button.success {
+            background: #10b981;
+        }
+        
+        /* Variant 2: Dots spinner */
+        .loading-button-dots {
+            position: relative;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        
+        .loading-button-dots:hover:not(.loading):not(.success) {
+            background: #2563eb;
+        }
+        
+        .dots-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+        }
+        
+        .loading-button-dots.loading .dots-spinner {
+            opacity: 1;
+        }
+        
+        .loading-button-dots.loading .button-text {
+            opacity: 0;
+        }
+        
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite both;
+        }
+        
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .dot:nth-child(3) { animation-delay: 0s; }
+        
+        @keyframes dotPulse {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Variant 3: Progress bar */
+        .loading-button-progress {
+            position: relative;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.8);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .loading-button-progress.loading .progress-bar {
+            animation: progressFill 3s ease-in-out;
+        }
+        
+        @keyframes progressFill {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        /* Variant 4: Pulse effect */
+        .loading-button-pulse {
+            position: relative;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        
+        .loading-button-pulse.loading {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+        
+        h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        
+        .demo-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .demo-label {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .reset-button {
+            background: #64748b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .reset-button:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+    <h2>Pure CSS Button Loading Spinner</h2>
+    
+    <div class="demo-section">
+        <div class="demo-label">Classic Spinner</div>
+        <div class="button-container">
+            <button class="loading-button" onclick="simulateLoading(this, 'spinner')">
+                <span class="button-text">Submit</span>
+                <div class="spinner"></div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </button>
+            
+            <button class="loading-button" onclick="simulateLoading(this, 'spinner')">
+                <span class="button-text">Save Changes</span>
+                <div class="spinner"></div>
+                <div class="checkmark">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <div class="demo-label">Dots Animation</div>
+        <div class="button-container">
+            <button class="loading-button-dots" onclick="simulateLoading(this, 'dots')">
+                <span class="button-text">Upload File</span>
+                <div class="dots-spinner">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </button>
+            
+            <button class="loading-button-dots" onclick="simulateLoading(this, 'dots')">
+                <span class="button-text">Process Data</span>
+                <div class="dots-spinner">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </button>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <div class="demo-label">Progress Bar</div>
+        <div class="button-container">
+            <button class="loading-button-progress" onclick="simulateLoading(this, 'progress')">
+                <span class="button-text">Download</span>
+                <div class="progress-bar"></div>
+            </button>
+            
+            <button class="loading-button-progress" onclick="simulateLoading(this, 'progress')">
+                <span class="button-text">Install Package</span>
+                <div class="progress-bar"></div>
+            </button>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <div class="demo-label">Pulse Effect</div>
+        <div class="button-container">
+            <button class="loading-button-pulse" onclick="simulateLoading(this, 'pulse')">
+                <span class="button-text">Send Message</span>
+            </button>
+            
+            <button class="loading-button-pulse" onclick="simulateLoading(this, 'pulse')">
+                <span class="button-text">Connect</span>
+            </button>
+        </div>
+    </div>
+    
+    <button class="reset-button" onclick="resetAllButtons()">Reset All Buttons</button>
+    
+    <script>
+        function simulateLoading(button, type) {
+            if (button.classList.contains('loading') || button.classList.contains('success')) {
+                return;
+            }
+            
+            button.disabled = true;
+            button.classList.add('loading');
+            
+            // Simulate loading time
+            setTimeout(() => {
+                button.classList.remove('loading');
+                button.classList.add('success');
+                
+                if (type === 'spinner' || type === 'dots') {
+                    button.querySelector('.button-text').textContent = 'Done!';
+                } else if (type === 'progress') {
+                    button.querySelector('.button-text').textContent = 'Complete!';
+                } else if (type === 'pulse') {
+                    button.querySelector('.button-text').textContent = 'Sent!';
+                }
+                
+                // Reset after showing success
+                setTimeout(() => {
+                    resetButton(button);
+                }, 2000);
+                
+            }, 3000);
+        }
+        
+        function resetButton(button) {
+            button.disabled = false;
+            button.classList.remove('loading', 'success');
+            
+            // Reset text based on button type
+            const originalTexts = {
+                'Submit': 'Submit',
+                'Save Changes': 'Save Changes',
+                'Upload File': 'Upload File',
+                'Process Data': 'Process Data',
+                'Download': 'Download',
+                'Install Package': 'Install Package',
+                'Send Message': 'Send Message',
+                'Connect': 'Connect'
+            };
+            
+            const currentText = button.querySelector('.button-text').textContent;
+            if (currentText === 'Done!' || currentText === 'Complete!' || currentText === 'Sent!') {
+                // Find original text by checking button content or use a data attribute
+                const buttonText = button.querySelector('.button-text');
+                for (let [original, _] of Object.entries(originalTexts)) {
+                    if (button.textContent.includes(original) || button.innerHTML.includes(original)) {
+                        buttonText.textContent = original;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        function resetAllButtons() {
+            const allButtons = document.querySelectorAll('button[class*="loading-button"]');
+            allButtons.forEach(button => {
+                if (button.classList.contains('loading') || button.classList.contains('success')) {
+                    resetButton(button);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

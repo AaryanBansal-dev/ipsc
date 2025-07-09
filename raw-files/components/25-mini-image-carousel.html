@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Image Carousel</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .carousel-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+            height: 100%;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 20px;
+        }
+        
+        .slide-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .slide-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-nav:hover {
+            background: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .carousel-nav svg {
+            width: 20px;
+            height: 20px;
+            fill: #3b82f6;
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+            background: white;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: #3b82f6;
+            transform: scale(1.2);
+        }
+        
+        .indicator:hover {
+            background: #3b82f6;
+        }
+        
+        h2 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .carousel-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mini Image Carousel</h2>
+    
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Slide 1">
+                    <div class="slide-overlay">
+                        <div class="slide-title">Beautiful Landscape</div>
+                        <div class="slide-description">Stunning mountain views at sunset</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Slide 2">
+                    <div class="slide-overlay">
+                        <div class="slide-title">City Architecture</div>
+                        <div class="slide-description">Modern buildings and urban design</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Slide 3">
+                    <div class="slide-overlay">
+                        <div class="slide-title">Ocean Waves</div>
+                        <div class="slide-description">Peaceful coastal scenery</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Slide 4">
+                    <div class="slide-overlay">
+                        <div class="slide-title">Forest Path</div>
+                        <div class="slide-description">Serene woodland trail</div>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="/placeholder.svg?height=300&width=500" alt="Slide 5">
+                    <div class="slide-overlay">
+                        <div class="slide-title">Desert Dunes</div>
+                        <div class="slide-description">Golden sand formations</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-counter" id="carouselCounter">1 / 5</div>
+            
+            <button class="carousel-nav carousel-prev" onclick="prevSlide()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            
+            <button class="carousel-nav carousel-next" onclick="nextSlide()">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="carousel-indicators" id="carouselIndicators">
+            <div class="indicator active" onclick="goToSlide(0)"></div>
+            <div class="indicator" onclick="goToSlide(1)"></div>
+            <div class="indicator" onclick="goToSlide(2)"></div>
+            <div class="indicator" onclick="goToSlide(3)"></div>
+            <div class="indicator" onclick="goToSlide(4)"></div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const track = document.getElementById('carouselTrack');
+        const indicators = document.querySelectorAll('.indicator');
+        const counter = document.getElementById('carouselCounter');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Update counter
+            counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-play functionality (optional)
+        let autoPlay = setInterval(nextSlide, 4000);
+        
+        // Pause auto-play on hover
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoPlay);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            autoPlay = setInterval(nextSlide, 4000);
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+    </script>
+</body>
+</html>

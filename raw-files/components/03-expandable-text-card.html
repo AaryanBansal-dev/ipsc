@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Text Card</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f8fafc;
+        }
+        
+        .text-card {
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 120px;
+        }
+        
+        .text-card:hover {
+            height: auto;
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+        
+        .card-title {
+            color: #1e40af;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card-text {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color: #1e40af; margin-bottom: 30px;">Expandable Text Card</h2>
+    
+    <div class="text-card">
+        <div class="card-title">Hover to Expand</div>
+        <div class="card-text">
+            This is a preview of the content. When you hover over this card, it will expand to show the full text content. 
+            
+            Here's more content that becomes visible when you hover. This demonstrates how you can create expandable cards that reveal additional information on interaction. The animation is smooth and the design remains clean and minimal.
+            
+            You can add as much content as needed here, and it will all be revealed when the user hovers over the card.
+        </div>
+    </div>
+</body>
+</html>
